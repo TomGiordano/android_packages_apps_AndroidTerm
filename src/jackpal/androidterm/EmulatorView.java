@@ -41,6 +41,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.CompletionInfo;
+import android.view.inputmethod.CorrectionInfo;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
@@ -341,6 +342,13 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
                 } catch (IOException e) {
                     Log.e(TAG, "error writing ", e);
                 }
+            }
+
+            public boolean commitCorrection(android.view.inputmethod.CorrectionInfo arg0) {
+                if (TermDebug.LOG_IME) {
+                    Log.w(TAG, "commitCompletion " + arg0);
+                }
+                return false;
             }
 
             private void mapAndSend(int c) throws IOException {
